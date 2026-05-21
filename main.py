@@ -25,10 +25,24 @@ def sign_up():
 
     with open("user.json", "w") as file:
         json.dump(user_data, file, indent=4)
+    print("Your account has been successfully created!")
 
 
+def login():
+    user_name = input("Enter your name: ")
+    with open("user.json", 'r') as file:
+        user_data = json.load(file)
+    for user_dict in user_data:
+        if user_dict['name'] == user_name:
+            current_user = User.create_user(user_dict['name'], user_dict['creation_date'])
+            return current_user
+        else:
+            print("Your account hasn't been found!")
+            
 
 
+user = login()
+print(user.name)
 
 
 
