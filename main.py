@@ -27,7 +27,6 @@ def sign_up():
         json.dump(user_data, file, indent=4)
     print("Your account has been successfully created!")
 
-
 def login():
     user_name = input("Enter your name: ")
     with open("user.json", 'r') as file:
@@ -38,15 +37,3 @@ def login():
             return current_user
         else:
             print("Your account hasn't been found!")
-            
-
-
-user = login()
-print(user.name)
-
-
-
-
-
-
-
