@@ -1,6 +1,5 @@
 import requests
-import json
-
+ 
 class User:
     def __init__(self, n, d):
         self.name = n
@@ -36,3 +35,22 @@ class User:
             print(f'This is the weather: \nCity = {city} \nCountry Code = {country}\nTemperature = {temperature}')
         else:
             print(f"Error {response.status_code}")
+
+
+    def convert_currency(self):
+        url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json"
+        response = requests.get(url)
+        data = response.json()
+        if response.status_code == 200:
+            while True:
+                try:
+                    eur_amount = int(input("Enter the amount in EUR: "))
+                    xof_amount = eur_amount * data["eur"]["xof"]
+                    return f"It is equal to {round(xof_amount, 2)} CFA Francs"
+                except ValueError:
+                    print("Invalid Input!")
+        else:
+            return f"Error {response.status_code}"
+
+
+

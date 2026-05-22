@@ -1,7 +1,6 @@
 from User import *
 import json
 from datetime import datetime
-import requests
 
 def print_menu():
     print("===== MENU =====")
@@ -38,6 +37,4 @@ def login():
             return current_user
         else:
             print("Your account hasn't been found!")
-
-
 
