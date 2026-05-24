@@ -11,7 +11,7 @@ class User:
         return user
     
     def view_profile(self):
-        print(f"===Your Account Info=== \nName: {self.name} \nAccount created on: {self.date_creation}")
+        return f"===Your Account Info=== \nName: {self.name} \nAccount created on: {self.date_creation}"
 
     def get_weather(self):
         url = "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly"
@@ -32,9 +32,9 @@ class User:
             city = data["city_name"]
             country = data['country_code']
             temperature = data["data"][1]["app_temp"]
-            print(f'This is the weather: \nCity = {city} \nCountry Code = {country}\nTemperature = {temperature}')
+            return f'This is the weather: \nCity = {city} \nCountry Code = {country}\nTemperature = {temperature}'
         else:
-            print(f"Error {response.status_code}")
+            return f"Error {response.status_code}"
 
 
     def convert_currency(self):
@@ -48,7 +48,7 @@ class User:
                     xof_amount = eur_amount * data["eur"]["xof"]
                     return f"It is equal to {round(xof_amount, 2)} CFA Francs"
                 except ValueError:
-                    print("Invalid Input!")
+                    return "Invalid Input!"
         else:
             return f"Error {response.status_code}"
 
