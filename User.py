@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
  
 class User:
     def __init__(self, n, d):
@@ -51,6 +52,20 @@ class User:
                     return "Invalid Input!"
         else:
             return f"Error {response.status_code}"
+        
+    def search_history(self, command):
+        date = datetime.now()
+        round_date = date.strftime("%Y-%M-%d")
+        match command:
+            case 1:
+                return f"View profile ({round_date})"
+            case 2:
+                return f"See Weather ({round_date})"
+            case 3:
+                return f"Convert Currency ({round_date})"
+        
+
+
 
 
 

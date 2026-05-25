@@ -1,26 +1,11 @@
 [
     {
         "name": "Mazid",
-        "creation_date": "2026-05-23"
-    },
-    {
-        "name": "Bush",
-        "creation_date": "2026-05-24"
-    },
-    {
-        "name": "Zeyna",
-        "creation_date": "2026-05-24"
-    },
-    {
-        "name": "Rod",
-        "creation_date": "2026-05-24"
-    },
-    {
-        "name": "Ele",
-        "creation_date": "2026-05-24"
-    },
-    {
-        "name": "ele",
-        "creation_date": "2026-05-24"
+        "creation_date": "2026-05-25",
+        "history": [
+            "View profile (2026-09-25)",
+            "See Weather (2026-09-25)",
+            "View profile (2026-09-25)"
+        ]
     }
 ]

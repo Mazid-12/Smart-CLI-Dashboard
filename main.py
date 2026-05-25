@@ -16,7 +16,8 @@ def sign_up(name):
     date_creation = long_date.strftime("%Y-%m-%d")
     user = User.create_user(name, date_creation)
     user_dictionary = {'name' : name,
-                       'creation_date' : date_creation}
+                       'creation_date' : date_creation,
+                       'history' : []}
     with open("user.json", 'r') as file:
         user_data = json.load(file)
         
@@ -51,24 +52,39 @@ def main():
             print("You're logged in!")
             break
 
-    while True:
-        try:  
-            print_menu()
-            user_choice = int(input('Enter your choice: '))
-            match user_choice:
-                case 1:
-                    print(user.view_profile())   
-                case 2:
-                    print(user.get_weather())      
-                case 3:
-                    print(user.convert_currency())       
-                case 4:
-                    print("not yet available!")
-                case _:
-                    break 
+    with open("user.json", 'r') as file:
+        user_list = json.load(file)
+    for user_dict in user_list:
+        if user_dict['name'] == user.name:
+            while True:
+                try:  
+                    print_menu()
+                    user_choice = int(input('Enter your choice: '))
+                    match user_choice:
+                        case 1:
+                            print(user.view_profile())
+                            action = user.search_history(user_choice)
+                            user_dict['history'].append(action)
+                        case 2:
+                            print(user.get_weather())
+                            action = user.search_history(user_choice)
+                            user_dict['history'].append(action)     
+                        case 3:
+                            print(user.convert_currency())
+                            action = user.search_history(user_choice)
+                            user_dict['history'].append(action)       
+                        case 4:
+                            print('This is your search history:')
+                            for command in user_dict['history']:
+                                print(command)
+                        case _:
+                            break 
+                    with open("user.json", 'w') as file:
+                        json.dump(user_list, file, indent=4)
+
                     
-        except ValueError:
-            print("Invalid Input")     
+                except ValueError:
+                    print("Invalid Input")     
 
 
 main()
